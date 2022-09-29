@@ -7,10 +7,10 @@ const Products = () => {
     fetch(api)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setProducts(data)
       })
   }, [])
+  
   const api: string = 'http://localhost:4000/api/products';
   const [products, setProducts] = useState<TypeProduct[]>([]);
 

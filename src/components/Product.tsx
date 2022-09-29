@@ -2,6 +2,9 @@ import { TypeProduct, ProductProps } from "../types/index";
 
 const Product = (props:ProductProps) => {
   const { name, image, size, price, _id } = props.product;
+  const buttonStyle: React.CSSProperties = {
+    
+  }
 
   return (
     <div className="flex flex-col items-center border-blue-400">
@@ -12,7 +15,7 @@ const Product = (props:ProductProps) => {
       <h2 className="font-medium">{size}</h2>
       <div className=" w-full flex justify-around items-center">
         <h1 className="font-medium">{price} $</h1>
-        <button className="bg-yellow-500 py-1 px-2 rounded-lg font-medium">Add</button>
+        <button style={buttonStyle} className="bg-yellow-500 text-white py-1 px-2 rounded-lg font-medium">Add</button>
       </div>
     </div>
   )
