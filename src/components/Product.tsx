@@ -1,9 +1,24 @@
 import { TypeProduct, ProductProps } from "../types/index";
 
-const Product = (props:ProductProps) => {
+const Product = (props: ProductProps) => {
   const { name, image, size, price, _id } = props.product;
   const buttonStyle: React.CSSProperties = {
+
+  }
+
+
+
+  const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, product: TypeProduct) => {
+    console.warn(_id);
+    // const cart: TypeCart = {
+    //   items: {
+    //     _id: 4
+    //   },
+    //   totalPrice: 40
+    // }
+
     
+
   }
 
   return (
@@ -15,7 +30,7 @@ const Product = (props:ProductProps) => {
       <h2 className="font-medium">{size}</h2>
       <div className=" w-full flex justify-around items-center">
         <h1 className="font-medium">{price} $</h1>
-        <button style={buttonStyle} className="bg-yellow-500 text-white py-1 px-2 rounded-lg font-medium">Add</button>
+        <button onClick={(e) => handleAddToCart(e, props.product)} style={buttonStyle} className="bg-yellow-500 text-white py-1 px-4 rounded-lg font-medium">Add</button>
       </div>
     </div>
   )

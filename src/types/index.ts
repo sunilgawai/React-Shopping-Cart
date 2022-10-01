@@ -11,3 +11,10 @@ export type TypeProduct = {
 export type ProductProps = {
    product: TypeProduct
 }
+
+export type TypeCart = {
+   items: {
+      _id: number
+   },
+   totalPrice: number
+}
