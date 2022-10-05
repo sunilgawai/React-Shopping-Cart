@@ -19,9 +19,12 @@ export type TypeCart = {
    totalPrice: number
 }
 
-export type TypeCartContext = {
-   items: {
-      _id: string
-   }
-   totalQty: number
+export type CartContextState = {
+   items: {}
+   addCart: (items: {})=> void
+}
+
+export const CartContextDefaultValue: CartContextState = {
+   items: {},
+   addCart: (items: {}) => { }
 }

@@ -1,5 +1,4 @@
 import { TypeProduct, ProductProps } from "../types/index";
-import { CartContext } from '../context/CartContext';
 import { useContext } from "react";
 
 const Product = (props: ProductProps) => {
@@ -8,7 +7,6 @@ const Product = (props: ProductProps) => {
 
   }
 
-  // const {  } = useContext(CartContext);
 
   const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, _id: string) => {
     console.warn(_id);
