@@ -7,36 +7,10 @@ const Product: React.FC<ProductProps> = (props: ProductProps) => {
   const buttonStyle: React.CSSProperties = {
 
   }
-  const ctx = useContext(CartContext)
-  console.log('product comp getting ctx', ctx);
-  let cart, setCart;
-  if(ctx?.cart){
-    cart = ctx.cart;
-  }
-  if(ctx?.addCart){
-    setCart = setCart;
-  }
-  console.log('cart data from product comp,', cart);
-  console.log('setCart from product comp,', setCart);
-
-  const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, _id: string) => {
+  
+  const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, _id: string): void => {
     console.warn(_id);
-    // const cart: TypeCart = {
-    //   items: {
-    //     _id: 4
-    //   },
-    //   totalPrice: 40
-    // }
-    const _cart: TypeCart = {
-      items: {
-        key: 0
-      },
-      totalQty: 0
-    };
     
-
-    console.log('from cart', _cart)
-
   }
 
   return (
