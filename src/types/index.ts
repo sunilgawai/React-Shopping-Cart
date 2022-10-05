@@ -14,7 +14,14 @@ export type ProductProps = {
 
 export type TypeCart = {
    items: {
-      _id: number
+      _id: string
    },
    totalPrice: number
+}
+
+export type TypeCartContext = {
+   items: {
+      _id: string
+   }
+   totalQty: number
 }

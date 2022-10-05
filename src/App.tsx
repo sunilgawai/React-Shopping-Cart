@@ -1,29 +1,27 @@
-import {useState} from 'react';
-import Header from './components/Header';
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Products from './components/Products';
-import { TypeCart} from "./types";
-import { useEffect } from "react";
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from './pages/Home';
+import Cart from './pages/Cart';
+// import { CartContext } from './context/CartContext';
+import { TypeCart } from './types';
 
 function App() {
-  const [cart, setCart] = useState<TypeCart>();
   
-  useEffect(()=> {
-    const cart = window.localStorage.getItem('cart');
-
-    if(!cart) return;
-
-    setCart(JSON.parse(cart));
-    console.log(cart);
-  })
+  
   return (
     <div className='container mx-auto'>
-      
-      <Navbar />
-      {/* <Header /> */}
-      <p className='font-bold text-lg italic'>Products</p>
-      <Products />
+      <Router>
+        <CartContext.Provider value={null}>
+          <Navbar />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/products' element={<Products />} />
+            <Route path='/cart' element={<Cart />} />
+          </Routes>
+        </CartContext.Provider>
+      </Router>
     </div>
 
   );
