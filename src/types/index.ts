@@ -14,17 +14,16 @@ export type ProductProps = {
 
 export type TypeCart = {
    items: {
-      _id: string
    },
-   totalPrice: number
+   totalQty: number
 }
 
 export type CartContextState = {
-   items: {}
+   cart: {}
    addCart: (items: {})=> void
 }
 
 export const CartContextDefaultValue: CartContextState = {
-   items: {},
+   cart: {},
    addCart: (items: {}) => { }
 }

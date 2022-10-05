@@ -1,12 +1,23 @@
-import { TypeProduct, ProductProps } from "../types/index";
-import { useContext } from "react";
+import { TypeProduct, ProductProps, TypeCart } from "../types/index";
+import React, { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
-const Product = (props: ProductProps) => {
+const Product: React.FC<ProductProps> = (props: ProductProps) => {
   const { name, image, size, price, _id } = props.product;
   const buttonStyle: React.CSSProperties = {
 
   }
-
+  const ctx = useContext(CartContext)
+  console.log('product comp getting ctx', ctx);
+  let cart, setCart;
+  if(ctx?.cart){
+    cart = ctx.cart;
+  }
+  if(ctx?.addCart){
+    setCart = setCart;
+  }
+  console.log('cart data from product comp,', cart);
+  console.log('setCart from product comp,', setCart);
 
   const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, _id: string) => {
     console.warn(_id);
@@ -16,6 +27,16 @@ const Product = (props: ProductProps) => {
     //   },
     //   totalPrice: 40
     // }
+    const _cart: TypeCart = {
+      items: {
+        key: 0
+      },
+      totalQty: 0
+    };
+    
+
+    console.log('from cart', _cart)
+
   }
 
   return (

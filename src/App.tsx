@@ -4,13 +4,11 @@ import Products from './components/Products';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from './pages/Home';
 import Cart from './pages/Cart';
-// import { CartContext } from './context/CartContext';
-import { CartContextDefaultValue, CartContextState, TypeCart } from './types';
+import { CartContextDefaultValue} from './types';
+import { CartContext } from './context/CartContext';
 
 function App() {
-  const CartContext = createContext<CartContextState | null>(CartContextDefaultValue);
-  // const CartContext = createContext<CartContextState | null>({items:{}, addCart: (items: {})=> {}});
-  
+
   const [cart, setCart] = useState({});
 
   useEffect(()=> {
@@ -23,7 +21,7 @@ function App() {
   return (
     <div className='container mx-auto'>
       <Router>
-        <CartContext.Provider value={null}>
+        <CartContext.Provider value={CartContextDefaultValue}>
           <Navbar />
           <Routes>
             <Route path='/' element={<Home />} />
