@@ -1,9 +1,18 @@
-// import { CartContextDefaultValue } from './../types/index';
-import { createContext } from "react";
-import { CartContextState, CartContextDefaultValue } from "../types";
-
-// const CartContext = createContext<CartContextState | null>(CartContextDefaultValue);
-  // const CartContext = createContext<CartContextState | null>({items:{}, addCart: (items: {})=> {}});
+import { createContext } from 'react';
 
 
-export const CartContext = createContext<CartContextState | null>(CartContextDefaultValue);
+export type CartType = {
+  items: {}
+  totalQty: number
+}
+
+export type CartContextType = {
+  cart: CartType | null
+  setCart: React.Dispatch<React.SetStateAction<CartType | null>>
+}
+
+export type CartContextProviderProps = {
+  children: React.ReactNode
+}
+
+export const CartContext = createContext<CartContextType | null>(null)

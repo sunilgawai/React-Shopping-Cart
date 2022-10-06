@@ -1,6 +1,5 @@
 import { TypeProduct, ProductProps, TypeCart } from "../types/index";
 import React, { useContext } from "react";
-import { CartContext } from "../context/CartContext";
 
 const Product: React.FC<ProductProps> = (props: ProductProps) => {
   const { name, image, size, price, _id } = props.product;
