@@ -1,5 +1,6 @@
-import { TypeProduct, ProductProps, TypeCart } from "../types/index";
+import { ProductProps } from "../types/index";
 import React, { useContext } from "react";
+import { CartContext, CartType } from "../context";
 
 const Product: React.FC<ProductProps> = (props: ProductProps) => {
   const { name, image, size, price, _id } = props.product;
@@ -7,9 +8,31 @@ const Product: React.FC<ProductProps> = (props: ProductProps) => {
 
   }
   
+  const ctx = useContext(CartContext);
   const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, _id: string): void => {
-    console.warn(_id);
+    const _cart = {...ctx?.cart};
+    if(!_cart.items){
+      _cart.items = {};
+    }
+
+    // @ts-ignore
+    if(!_cart.items[_id]){
+      // @ts-ignore
+      _cart.items[_id] += 1;
+    }else{
+      // @ts-ignore
+      _cart.items[_id] = 1;
+    }
+
+    if(!_cart.totalQty){
+      _cart.totalQty = 0;
+    }
+
+    _cart.totalQty += 1;
+    // @ts-ignore
+    ctx?.setCart(_cart);
     
+    console.log(ctx?.cart);
   }
 
   return (

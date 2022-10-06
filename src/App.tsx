@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from 'react';
+import { useState, useEffect, createContext, useContext } from 'react';
 import Navbar from './components/Navbar';
 import Products from './components/Products';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -22,8 +22,8 @@ function App() {
       </CartContext.Provider>
     )
   }
-
-
+  const ctx = useContext(CartContext);
+  
   return (
     <div className='container mx-auto'>
       <CartContextProvider>

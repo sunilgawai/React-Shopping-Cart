@@ -2,7 +2,9 @@ import { createContext } from 'react';
 
 
 export type CartType = {
-  items: {}
+  items: {
+    _id?: number
+  }
   totalQty: number
 }
 
