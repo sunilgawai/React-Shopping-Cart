@@ -12,18 +12,20 @@ export type ProductProps = {
    product: TypeProduct
 }
 
-export type TypeCart = {
-   items: {
-   },
-   totalQty: number
+
+export type CartType = {
+   items?: {
+      [_id: string]: number
+   } | undefined
+   totalQty?: number | undefined
 }
 
-export type CartContextState = {
-   cart: {}
-   addCart: (items: {})=> void
+export type CartContextType = {
+   cart: CartType | null
+   setCart: (cart: CartType | null) => void
+   //setCart: React.Dispatch<React.SetStateAction<CartType | null>>
 }
 
-export const CartContextDefaultValue: CartContextState = {
-   cart: {},
-   addCart: (items: {}) => { }
+export type CartContextProviderProps = {
+   children: React.ReactNode
 }

@@ -1,38 +1,31 @@
-import { ProductProps } from "../types/index";
+import { CartType, ProductProps } from "../types/index";
 import React, { useContext } from "react";
-import { CartContext, CartType } from "../context";
+import { CartContext } from "../context";
+
 
 const Product: React.FC<ProductProps> = (props: ProductProps) => {
   const { name, image, size, price, _id } = props.product;
-  const buttonStyle: React.CSSProperties = {
-
-  }
-  
   const ctx = useContext(CartContext);
-  const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, _id: string): void => {
+  
+  const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, _id: string) => {
     const _cart = {...ctx?.cart};
-    if(!_cart.items){
-      _cart.items = {};
-    }
-
-    // @ts-ignore
+    // check if item already is in the cart.
+    //@ts-ignore
     if(!_cart.items[_id]){
-      // @ts-ignore
-      _cart.items[_id] += 1;
-    }else{
-      // @ts-ignore
+      //@ts-ignore
       _cart.items[_id] = 1;
+    }else{
+      //@ts-ignore
+      _cart.items[_id] += 1;
     }
+    console.log(_cart.totalQty);    
 
-    if(!_cart.totalQty){
-      _cart.totalQty = 0;
-    }
+    //@ts-ignore
+    _cart.totalQty = _cart.totalQty + 1;
 
-    _cart.totalQty += 1;
-    // @ts-ignore
+    // adding to setCart()
     ctx?.setCart(_cart);
-    
-    console.log(ctx?.cart);
+    console.log('local cart', _cart)
   }
 
   return (
@@ -44,7 +37,7 @@ const Product: React.FC<ProductProps> = (props: ProductProps) => {
       <h2 className="font-medium">{size}</h2>
       <div className=" w-full flex justify-around items-center">
         <h1 className="font-medium">{price} $</h1>
-        <button onClick={(e) => handleAddToCart(e, _id)} style={buttonStyle} className="bg-yellow-500 text-white py-1 px-4 rounded-lg font-medium">Add</button>
+        <button onClick={(e) => handleAddToCart(e, _id)} className="bg-yellow-500 text-white py-1 px-4 rounded-lg font-medium">Add</button>
       </div>
     </div>
   )

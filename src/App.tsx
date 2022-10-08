@@ -4,26 +4,39 @@ import Products from './components/Products';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from './pages/Home';
 import Cart from './pages/Cart';
-import { CartContext, CartContextType, CartContextProviderProps, CartType } from './context/CartContext';
+import { CartContext} from './context/CartContext';
+import { CartContextProviderProps, CartType } from './types';
 
 function App() {
+  const [cart, setCart] = useState<CartType | null>({ items: {}, totalQty: 0 });
 
-  // useEffect(() => {
-  //   const data = window.localStorage.getItem('cart');
-  //   if (!data) return;
-  //   setCart(JSON.parse(data));
-  // }, [])
+  // get cart items when App component Loads.
+  useEffect(()=> {
+    const cart = window.localStorage.getItem('cart');
+    console.log('when App com loadded storage cart value is', cart)
+    // @ts-ignore
+    if(cart != undefined || cart != null){
+      setCart(JSON.parse(cart));
+    }
+  }, [])
 
-  const CartContextProvider = ({children}: CartContextProviderProps) => {
-    const [cart, setCart] = useState<CartType | null>({items:{}, totalQty: 0});
+  // set cart items when setCart function in called.
+  useEffect(()=> {
+    if(cart != undefined){
+      window.localStorage.setItem('cart', JSON.stringify(cart));
+    }
+    console.log('useEffect after cart changes', cart)
+  }, [cart])
+
+
+  const CartContextProvider = ({ children }: CartContextProviderProps) => {
     return (
-      <CartContext.Provider value={{cart,setCart}}>
+      <CartContext.Provider value={{cart, setCart}}>
         {children}
       </CartContext.Provider>
     )
   }
-  const ctx = useContext(CartContext);
-  
+
   return (
     <div className='container mx-auto'>
       <CartContextProvider>
