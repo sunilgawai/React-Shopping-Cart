@@ -1,4 +1,4 @@
 import { createContext } from 'react';
-import { CartContextType, CartContextProviderProps } from '../types';
+import { CartContextType } from '../types';
 
 export const CartContext = createContext<CartContextType | null>(null)
